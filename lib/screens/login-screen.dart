@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:semi_final/screens/signup-screen.dart';
 
+import 'home-page.dart';
+
 class Log_in extends StatefulWidget {
   const Log_in({super.key});
 
@@ -72,9 +74,26 @@ class _Log_inState extends State<Log_in> {
                     padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: ElevatedButton(
                       child: const Text('Get ME to my Account'),
-                      onPressed: () {
-                        print(nameController.text);
-                        print(passwordController.text);
+                      onPressed: () async {
+                        try {
+                          FirebaseAuth myauthobject = FirebaseAuth.instance;
+                          UserCredential loginguser =
+                              await myauthobject.signInWithEmailAndPassword(
+                                  email: nameController.text,
+                                  password: passwordController.text);
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return Home_Page();
+                            },
+                          ));
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Container(
+                            height: 30,
+                            width: 75,
+                            child: Text("sorry something wrong "),
+                          )));
+                        }
                       },
                     )),
                 Row(

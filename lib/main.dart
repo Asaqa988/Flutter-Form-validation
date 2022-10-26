@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:semi_final/firebase_options.dart';
+import 'package:semi_final/screens/add.dart';
+import 'package:semi_final/screens/home-page.dart';
 import 'package:semi_final/screens/signup-screen.dart';
 
 Future<void> main() async {
@@ -21,6 +23,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Sign_up();
+    return Home_Page();
   }
 }
